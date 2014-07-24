@@ -34,7 +34,7 @@ bool cmdOptionExists(char** begin, char** end, const std::string& option){
     return std::find(begin, end, option) != end;
 };
 
-std::map<std::string, SpaceObject> CreateObjectsFromTLEfile(const char* fileName, double defaultRadius_RB, double defaultRadius_PL, double defaultRadius_DEB, double defaultRadius_Other, int wgs, const char * radiusFileName){
+std::map<std::string, SpaceObject> createObjectsFromTLEfile(const char* fileName, double defaultRadius_RB, double defaultRadius_PL, double defaultRadius_DEB, double defaultRadius_Other, int wgs, const char * radiusFileName){
 	/* Read a file that contains multiple three line elements and create SpaceObjects from them. Return them to a std::map where the keys will be objects' NORAD IDs (SSCs).
 	@param fileName - name of the file from which to read the TLE data.
 	@param defaultR_RB - default object to be used for object that have no entry in the radiusFileName in metres and the 1st line of the three-line element contains R/B.
@@ -81,7 +81,7 @@ std::map<std::string, SpaceObject> CreateObjectsFromTLEfile(const char* fileName
 		counterTLEs+=1;
 		if(counterTLEs == 3){ // Read a whole TLE.
 			counterTLEs = 0;
-			SpaceObject tempSO = SpaceObject( currentTLE, wgs );
+			SpaceObject tempSO = SpaceObject( currentTLE, 1, 1.0, wgs ); // Here one can change how covariance for the object is set (important for conjunctions) and whether to simulate changed atmospheric density (lieanrly proportional to B*).
 			SpaceObjects.insert( std::pair<std::string,SpaceObject>( tempSO.NORAD_ID, tempSO) );
 			try{
 				SpaceObjects.at(tempSO.NORAD_ID).SetHardBodyRadius( hardBodyRadiiPtr->at(tempSO.NORAD_ID) ); // Assign the radius value.
@@ -101,7 +101,13 @@ std::map<std::string, SpaceObject> CreateObjectsFromTLEfile(const char* fileName
 	}
 
 	char buff[25]; time_t now = time (0);
-    strftime(buff, 25, "%Y-%m-%d %H:%M:%S.000", localtime (&now));
+    #ifdef _MSC_VER 
+		struct tm timeinfo;
+		localtime_s(&timeinfo, &now);
+		strftime(buff, 25, "%Y-%m-%d %H:%M:%S.000", &timeinfo);
+	#else
+		strftime(buff, 25, "%Y-%m-%d %H:%M:%S.000", localtime (&now));
+	#endif
 	std::cout<<buff<<": Generated "<<SpaceObjects.size()<<" objects."<<std::endl;
 	
 	return SpaceObjects;
@@ -205,9 +211,9 @@ int main(int argc, char *argv[]){
 	};
 
 	/* Run the actual program. */
-	std::map<std::string, SpaceObject> SpaceObjects = CreateObjectsFromTLEfile(TLEfile, rRB, rPL, rDEB, rOther, wgs, RadFile); // Read the objects' TLEs from the file.
+	std::map<std::string, SpaceObject> SpaceObjects = createObjectsFromTLEfile(TLEfile, rRB, rPL, rDEB, rOther, wgs, RadFile); // Read the objects' TLEs from the file.
 
-	std::vector<double> AnalysisJDAYs = std::vector<double>(); // Epochs at which the objects will be propagated.
+	std::vector<double> AnalysisJDAYs = std::vector<double>(NoPoints, 0.0); // Epochs at which the objects will be propagated.
 	linspace(&AnalysisJDAYs, ANALYSIS_INTERVAL_START, ANALYSIS_INTERVAL_STOP, &NoPoints);
 
 	std::vector<double> position = std::vector<double>(3, 0.0); // Cartesian position of a given object in TEME of Date in km.

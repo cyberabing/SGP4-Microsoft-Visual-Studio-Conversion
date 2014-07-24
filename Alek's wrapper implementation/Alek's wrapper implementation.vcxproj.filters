@@ -24,31 +24,10 @@
     <ClInclude Include="..\Alek%27s wrapper implementation\VectorOperations.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ast2body.h">
+    <ClInclude Include="..\Alek%27s wrapper implementation\sgp4ext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\astiod.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\astmath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\asttime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\coordfk5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\msis00.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\msiscom.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\sgp4io.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\sgp4unit.h">
+    <ClInclude Include="..\Alek%27s wrapper implementation\sgp4unit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -62,34 +41,10 @@
     <ClCompile Include="..\Alek%27s wrapper implementation\VectorOperations.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ast2body.cpp">
+    <ClCompile Include="..\Alek%27s wrapper implementation\sgp4ext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\astiod.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\astmath.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\asttime.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\coordfk5.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\eopspw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\msis00.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\msiscom.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sgp4io.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\sgp4unit.cpp">
+    <ClCompile Include="..\Alek%27s wrapper implementation\sgp4unit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

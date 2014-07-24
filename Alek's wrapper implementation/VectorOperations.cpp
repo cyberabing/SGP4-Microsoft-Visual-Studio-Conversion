@@ -217,7 +217,7 @@ std::vector< std::vector<double> > inverseThreeByThree( std::vector< std::vector
 	result.at(0).at(0) = matPtr->at(1).at(1)*matPtr->at(2).at(2) - matPtr->at(1).at(2)*matPtr->at(2).at(1); // 1st row of the inverted matrix.
 	result.at(0).at(1) = matPtr->at(0).at(2)*matPtr->at(2).at(1) - matPtr->at(0).at(1)*matPtr->at(2).at(2);
 	result.at(0).at(2) = matPtr->at(0).at(1)*matPtr->at(1).at(2) - matPtr->at(0).at(2)*matPtr->at(1).at(1);
-	result.at(1).at(0) = matPtr->at(1).at(2)*matPtr->at(2).at(1) - matPtr->at(1).at(0)*matPtr->at(2).at(2); // Second row.
+	result.at(1).at(0) = matPtr->at(1).at(2)*matPtr->at(2).at(0) - matPtr->at(1).at(0)*matPtr->at(2).at(2); // Second row.
 	result.at(1).at(1) = matPtr->at(0).at(0)*matPtr->at(2).at(2) - matPtr->at(0).at(2)*matPtr->at(2).at(0);
 	result.at(1).at(2) = matPtr->at(0).at(2)*matPtr->at(1).at(0) - matPtr->at(0).at(0)*matPtr->at(1).at(2);
 	result.at(2).at(0) = matPtr->at(1).at(0)*matPtr->at(2).at(1) - matPtr->at(1).at(1)*matPtr->at(2).at(0); // Third row.

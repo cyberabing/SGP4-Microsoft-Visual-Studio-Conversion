@@ -2,13 +2,14 @@
 A class that provides a convenient interface to the SGP4 propagator.
 Based on code by David Vallado freely available on clestrak.com (last accessed 03/02/2014).
 
-@version 1.1.0
-@since 23/07/2014 23:15:00
+@version 1.1.1
+@since 24/07/2014 10:29:00
 @author Aleksander Lidtke
 @email al11g09@soton.ac.uk, alek_l@onet.eu
 
 CHANGELOG:
 23/07/2014 - 1.1.0 - Added the covariance parameter that enables a fixed covariance matrix to be set.
+24/07/2014 - 1.1.1 - fixed a bug where the NORAD_ID attribute would be changed hence causing the entire object creation framework to fail.
 */
 #pragma once
 
@@ -22,11 +23,8 @@ CHANGELOG:
 #include <string>
 #include <sstream>
 
+#include "sgp4ext.h"
 #include "sgp4unit.h"
-#include "ast2body.h"
-#include "astmath.h"
-#include "asttime.h"
-#include "astiod.h"
 #include "VectorOperations.h"
 
 #define PI 3.14159265358979323846
@@ -38,7 +36,7 @@ private:
 public:
 	/* Methods. */
 	SpaceObject(void);
-	SpaceObject(std::vector<std::string> twoLineElement, int COV=1, double bstarMultiplier=1.0, int wgsEllipsoid=84, double objectRadius=5.0, char opsMode='i');
+	SpaceObject(std::vector<std::string> threeLineElement, int COV=1, double bstarMultiplier=1.0, int wgsEllipsoid=84, double objectRadius=5.0, char opsMode='i');
 	~SpaceObject(void);
 
 	void PropagateJDAY(std::vector<double>* posPtr, std::vector<double>* vloPtr, double JDAY, bool updateCurrentState=false);

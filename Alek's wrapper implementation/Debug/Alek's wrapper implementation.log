@@ -1,40 +1,5 @@
-﻿Build started 24/07/2014 07:50:13.
-     1>Project "C:\Users\Alek\Documents\GitHub\SGP4-Microsoft-Visual-Studio-Conversion\Alek's wrapper implementation\Alek's wrapper implementation.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt "..\Alek's wrapper implementation\SpaceObject.cpp" "..\Alek's wrapper implementation\main.cpp"
-         main.cpp
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\fatalerror.h(25): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\time.inl(112) : see declaration of 'localtime'
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\main.cpp(104): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\time.inl(112) : see declaration of 'localtime'
-         SpaceObject.cpp
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\fatalerror.h(25): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\time.inl(112) : see declaration of 'localtime'
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(83): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(84): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 11.0\vc\include\stdio.h(311) : see declaration of 'sscanf'
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(98): error C2065: 'xpdotp' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(104): error C2065: 'xpdotp' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(105): error C2065: 'xpdotp' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(108): error C2065: 'deg2rad' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(109): error C2065: 'deg2rad' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(110): error C2065: 'deg2rad' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(111): error C2065: 'deg2rad' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(126): error C2660: 'rv2coe' : function does not take 14 arguments
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(197): error C2660: 'rv2coe' : function does not take 14 arguments
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(204): error C2660: 'rv2coe' : function does not take 14 arguments
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(309): error C2065: 'xpdotp' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(315): error C2065: 'xpdotp' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(316): error C2065: 'xpdotp' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(319): error C2065: 'deg2rad' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(320): error C2065: 'deg2rad' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(321): error C2065: 'deg2rad' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(322): error C2065: 'deg2rad' : undeclared identifier
-     1>c:\users\alek\documents\github\sgp4-microsoft-visual-studio-conversion\alek's wrapper implementation\spaceobject.cpp(334): error C2660: 'rv2coe' : function does not take 14 arguments
-         Generating Code...
-     1>Done Building Project "C:\Users\Alek\Documents\GitHub\SGP4-Microsoft-Visual-Studio-Conversion\Alek's wrapper implementation\Alek's wrapper implementation.vcxproj" (Build target(s)) -- FAILED.
+﻿Build started 24/07/2014 22:54:03.
 
-Build FAILED.
+Build succeeded.
 
-Time Elapsed 00:00:02.37
+Time Elapsed 00:00:00.04

@@ -22,9 +22,10 @@ SpaceObject::SpaceObject(std::vector<std::string> threeLineElement, int COV, dou
 	/* Initialise SGP4-specific attributes. */
 	revnum=0; elnum=0;
 	
+	// These are defined in SGP4EXT, will need to uncomment them when not using it.
 	//const double deg2rad = PI/180.0;         // Conversion factor. 0.0174532925199433
- //   const double xpdotp = 1440.0/(2.0*PI);  // Minutes in a dayper a full revolution = 229.1831180523293. Unit: min/rad
-	sgp4Sat = elsetrec(); // SGP4 satellite enum that is used for propagation using the SGP4.
+	//const double xpdotp = 1440.0/(2.0*PI);  // Minutes in a dayper a full revolution = 229.1831180523293. Unit: min/rad
+	sgp4Sat = elsetrec(); // SGP4 satellite struct that is used for propagation using the SGP4.
 	
 	/* Define the desired EGS ellipsoid. */
 	if(wgsEllipsoid==84){
@@ -80,8 +81,13 @@ SpaceObject::SpaceObject(std::vector<std::string> threeLineElement, int COV, dou
         TLE1[68] = '0';
 
 	/* Parse the TLE. */
-	sscanf(TLE1,"%2d %5ld %1c %10s %2d %12lf %11lf %7lf %2d %7lf %2d %2d %6ld ",&cardnumb,&sgp4Sat.satnum,&classification,intldesg,&sgp4Sat.epochyr,&sgp4Sat.epochdays,&sgp4Sat.ndot,&sgp4Sat.nddot,&nexp,&sgp4Sat.bstar,&ibexp,&numb,&elnum);
-	sscanf(TLE2,"%2d %5ld %9lf %9lf %8lf %9lf %9lf %11lf %6ld %lf %lf %ld \n",&cardnumb,&sgp4Sat.satnum,&sgp4Sat.inclo,&sgp4Sat.nodeo,&sgp4Sat.ecco,&sgp4Sat.argpo,&sgp4Sat.mo,&sgp4Sat.no,&revnum);
+	#ifdef _MSC_VER // Depending on the compiler being used utilise the appropriate function to copy the TLE lines.
+		sscanf_s(TLE1,"%2d %5ld %1c %10s %2d %12lf %11lf %7lf %2d %7lf %2d %2d %6ld ",&cardnumb,&sgp4Sat.satnum,&classification, sizeof(char),intldesg, 11*sizeof(char),&sgp4Sat.epochyr,&sgp4Sat.epochdays,&sgp4Sat.ndot,&sgp4Sat.nddot,&nexp,&sgp4Sat.bstar,&ibexp,&numb,&elnum);
+		sscanf_s(TLE2,"%2d %5ld %9lf %9lf %8lf %9lf %9lf %11lf %6ld %lf %lf %ld \n",&cardnumb,&sgp4Sat.satnum,&sgp4Sat.inclo,&sgp4Sat.nodeo,&sgp4Sat.ecco,&sgp4Sat.argpo,&sgp4Sat.mo,&sgp4Sat.no,&revnum);
+	#else
+		sscanf(TLE1,"%2d %5ld %1c %10s %2d %12lf %11lf %7lf %2d %7lf %2d %2d %6ld ",&cardnumb,&sgp4Sat.satnum,&classification,intldesg,&sgp4Sat.epochyr,&sgp4Sat.epochdays,&sgp4Sat.ndot,&sgp4Sat.nddot,&nexp,&sgp4Sat.bstar,&ibexp,&numb,&elnum);
+		sscanf(TLE2,"%2d %5ld %9lf %9lf %8lf %9lf %9lf %11lf %6ld %lf %lf %ld \n",&cardnumb,&sgp4Sat.satnum,&sgp4Sat.inclo,&sgp4Sat.nodeo,&sgp4Sat.ecco,&sgp4Sat.argpo,&sgp4Sat.mo,&sgp4Sat.no,&revnum);
+	#endif
 	
 	std::stringstream strstream; // Record the NORAD ID as a string as well.
 	strstream << sgp4Sat.satnum; strstream >> NORAD_ID;
@@ -95,7 +101,7 @@ SpaceObject::SpaceObject(std::vector<std::string> threeLineElement, int COV, dou
 	jday(year, epMon, epDay, epHr, epMin, epSec, sgp4Sat.jdsatepoch); 
 
 	// Find no, ndot, nddot.
-    sgp4Sat.no   = sgp4Sat.no / xpdotp; //* rad/min
+    sgp4Sat.no   = sgp4Sat.no / xpdotp; // When using SGP4EXT this will already be in correct units, anyway multiply by: rad/min
     sgp4Sat.nddot= sgp4Sat.nddot * pow(10.0, nexp);
     sgp4Sat.bstar= sgp4Sat.bstar * pow(10.0, ibexp) * bstarMultiplier; // Multiply by the factor that allows variations in solar activity to be synthesised.
     
@@ -229,10 +235,11 @@ void SpaceObject::SetCovarianceMatrixRTC(std::vector< std::vector<double> > Cova
 void SpaceObject::ReadThreeLineElements( void ){
 	/* Read three-line elements from a file called NORAD_ID.txt and save them to CovarianceTLEs. Use these to estimate the covariance using the method by
 	V.P. Osweiler in method ComputeCovarianceOSW. Assume that the 3LEs are in the order oldest to newest i.e. that the most-recent one is last. */
-	const char* fileName = NORAD_ID.append(".txt").c_str(); // Assume that the 3LEs from which to estimate the covariance are saved in files called NORAD_ID.txt
+	std::string tempString = NORAD_ID; // Assume that the 3LEs from which to estimate the covariance are saved in files called NORAD_ID.txt. Make a copy of NORAD_ID attribute not to change it.
+	const char* fileName = tempString.append(".txt").c_str();
 	std::ifstream TLEfileStream(fileName, std::ifstream::in); // File streams that are necessary.
 
-	std::vector<elsetrec> CovarianceTLEs = std::vector<elsetrec>(); // TLEs that are representative of the covariance matrix and are used to propagate it in a Monte Carlo fashion.
+	CovarianceTLEs = std::vector<elsetrec>(); // TLEs that are representative of the covariance matrix and are used to propagate it in a Monte Carlo fashion.
 	
 	std::string TLEline; // Currently read TLE line.
 	std::vector<std::string> currentTLE; currentTLE.resize(3); // Assembled TLE (second and third lines) and the object name (first line).
@@ -291,9 +298,14 @@ void SpaceObject::ReadThreeLineElements( void ){
 				TLE1[68] = '0';
 
 			/* Parse the TLE. */
-			sscanf(TLE1,"%2d %5ld %1c %10s %2d %12lf %11lf %7lf %2d %7lf %2d %2d %6ld ",&cardnumb,&temporarySgp4Sat.satnum,&classification,intldesg,&temporarySgp4Sat.epochyr,&temporarySgp4Sat.epochdays,&temporarySgp4Sat.ndot,&temporarySgp4Sat.nddot,&nexp,&temporarySgp4Sat.bstar,&ibexp,&numb,&elnum);
-			sscanf(TLE2,"%2d %5ld %9lf %9lf %8lf %9lf %9lf %11lf %6ld %lf %lf %ld \n",&cardnumb,&temporarySgp4Sat.satnum,&temporarySgp4Sat.inclo,&temporarySgp4Sat.nodeo,&temporarySgp4Sat.ecco,&temporarySgp4Sat.argpo,&temporarySgp4Sat.mo,&temporarySgp4Sat.no,&revnum);
-	
+			#ifdef _MSC_VER // Depending on the compiler being used utilise the appropriate function to copy the TLE lines.
+				sscanf_s(TLE1,"%2d %5ld %1c %10s %2d %12lf %11lf %7lf %2d %7lf %2d %2d %6ld ",&cardnumb,&temporarySgp4Sat.satnum,&classification, sizeof(char),intldesg, 11*sizeof(char),&temporarySgp4Sat.epochyr,&temporarySgp4Sat.epochdays,&temporarySgp4Sat.ndot,&temporarySgp4Sat.nddot,&nexp,&temporarySgp4Sat.bstar,&ibexp,&numb,&elnum);
+				sscanf_s(TLE2,"%2d %5ld %9lf %9lf %8lf %9lf %9lf %11lf %6ld %lf %lf %ld \n",&cardnumb,&temporarySgp4Sat.satnum,&temporarySgp4Sat.inclo,&temporarySgp4Sat.nodeo,&temporarySgp4Sat.ecco,&temporarySgp4Sat.argpo,&temporarySgp4Sat.mo,&temporarySgp4Sat.no,&revnum);
+			#else
+				sscanf(TLE1,"%2d %5ld %1c %10s %2d %12lf %11lf %7lf %2d %7lf %2d %2d %6ld ",&cardnumb,&temporarySgp4Sat.satnum,&classification,intldesg,&temporarySgp4Sat.epochyr,&temporarySgp4Sat.epochdays,&temporarySgp4Sat.ndot,&temporarySgp4Sat.nddot,&nexp,&temporarySgp4Sat.bstar,&ibexp,&numb,&elnum);
+				sscanf(TLE2,"%2d %5ld %9lf %9lf %8lf %9lf %9lf %11lf %6ld %lf %lf %ld \n",&cardnumb,&temporarySgp4Sat.satnum,&temporarySgp4Sat.inclo,&temporarySgp4Sat.nodeo,&temporarySgp4Sat.ecco,&temporarySgp4Sat.argpo,&temporarySgp4Sat.mo,&temporarySgp4Sat.no,&revnum);
+			#endif
+
 			std::stringstream strstream; // Record the NORAD ID as a string as well.
 			strstream << temporarySgp4Sat.satnum; strstream >> NORAD_ID;
 		

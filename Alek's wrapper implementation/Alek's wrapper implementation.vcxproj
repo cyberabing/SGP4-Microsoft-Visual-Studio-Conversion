@@ -80,32 +80,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Alek%27s wrapper implementation\FatalError.h" />
+    <ClInclude Include="..\Alek%27s wrapper implementation\sgp4ext.h" />
+    <ClInclude Include="..\Alek%27s wrapper implementation\sgp4unit.h" />
     <ClInclude Include="..\Alek%27s wrapper implementation\SpaceObject.h" />
     <ClInclude Include="..\Alek%27s wrapper implementation\VectorOperations.h" />
-    <ClInclude Include="..\ast2body.h" />
-    <ClInclude Include="..\astiod.h" />
-    <ClInclude Include="..\astmath.h" />
-    <ClInclude Include="..\asttime.h" />
-    <ClInclude Include="..\coordfk5.h" />
-    <ClInclude Include="..\msis00.h" />
-    <ClInclude Include="..\msiscom.h" />
-    <ClInclude Include="..\sgp4io.h" />
-    <ClInclude Include="..\sgp4unit.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Alek%27s wrapper implementation\main.cpp" />
+    <ClCompile Include="..\Alek%27s wrapper implementation\sgp4ext.cpp" />
+    <ClCompile Include="..\Alek%27s wrapper implementation\sgp4unit.cpp" />
     <ClCompile Include="..\Alek%27s wrapper implementation\SpaceObject.cpp" />
     <ClCompile Include="..\Alek%27s wrapper implementation\VectorOperations.cpp" />
-    <ClCompile Include="..\ast2body.cpp" />
-    <ClCompile Include="..\astiod.cpp" />
-    <ClCompile Include="..\astmath.cpp" />
-    <ClCompile Include="..\asttime.cpp" />
-    <ClCompile Include="..\coordfk5.cpp" />
-    <ClCompile Include="..\eopspw.cpp" />
-    <ClCompile Include="..\msis00.cpp" />
-    <ClCompile Include="..\msiscom.cpp" />
-    <ClCompile Include="..\sgp4io.cpp" />
-    <ClCompile Include="..\sgp4unit.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

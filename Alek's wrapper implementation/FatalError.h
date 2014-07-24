@@ -22,6 +22,13 @@ class FatalError : public std::runtime_error{
 		FatalError(void):runtime_error("Fatal error"){}
 		FatalError(std::string msg, std::string file, int line):runtime_error(msg.c_str()) {
 			char buff[25]; time_t now = time (0);
-			strftime(buff, 25, "%Y-%m-%d %H:%M:%S.000", localtime (&now));
+			#ifdef _MSC_VER 
+				struct tm timeinfo;
+				localtime_s(&timeinfo, &now);
+				strftime(buff, 25, "%Y-%m-%d %H:%M:%S.000", &timeinfo);
+			#else
+				strftime(buff, 25, "%Y-%m-%d %H:%M:%S.000", localtime (&now));
+			#endif
+
 			std::cout <<buff<<" ---> FATAL ERROR IN: " <<file<< " AT LINE " << line << ":\n\n"; }
 };
