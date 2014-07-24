@@ -31,8 +31,7 @@ CHANGELOG:
 
 class SpaceObject{
 private:
-	void ReadThreeLineElements( void );
-	std::vector< std::vector<double> > SpaceObject::InertialToRTC(std::vector<double>* positionPtr, std::vector<double>* velocityPtr);
+	std::vector< std::vector<double> > InertialToRTC(std::vector<double>* positionPtr, std::vector<double>* velocityPtr);
 public:
 	/* Methods. */
 	SpaceObject(void);
@@ -44,8 +43,6 @@ public:
 	void CalculatePerigeeRadius(void);
 	void CalculateApogeeRadius(void);
 	void SetHardBodyRadius(double bodyRadius);
-	void SetCovarianceMatrixRTC(std::vector< std::vector<double> > CovarianceMatrixRTC);
-	void SpaceObject::ComputeCovarianceOSW( double epochJDAY );
 
 	/* Propagation-sepcific attrributes. */
 	char OPSMODE; // Improved operation mode of SGP4, should result in a smoother behaviour.
@@ -72,6 +69,4 @@ public:
 	/* Covariance matrix related attributes. */
 	std::vector< std::vector<double> > FullCovarianceMatrixRTC; // 6x6 position and velocity covariance matrix in km and km/sec.
 	std::vector< std::vector<double> > PositionCovarianceMatrixRTC; // 3x3 position covariance matrix in km.
-	std::vector<elsetrec> CovarianceTLEs; // TLEs that are representative of the covariance matrix and are used to propagate it in a Monte Carlo fashion.
-
 };
