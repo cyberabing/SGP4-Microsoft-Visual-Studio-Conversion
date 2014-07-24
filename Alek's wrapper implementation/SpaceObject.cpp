@@ -174,6 +174,12 @@ void SpaceObject::PropagateJDAY(std::vector<double>* posPtr, std::vector<double>
 };
 
 void SpaceObject::Propagate(std::vector<double>* posPtr, std::vector<double>* veloPtr, int year, int month, int day, int hour, int minute, double second, bool updateCurrentState){
+	/* Propagate the satellite to the specified Universal Time epocj and output its position and velocity at that epoch to currentPosPtr
+	and currentVeloPtr.
+	@param posPtr, veloPtr - pointers to std::vector<double> of length 3 that contain current positions and velocities of the object.
+	@param year, month, day, hour, minute, second - Universal Time at which the object's state is to be computed.
+	@param updateCurrentState - whether to update currentPos, currentVelo and currentEpochJDAY with the new values.
+	*/	
 	double JDAY = currentEpochJDAY; // Initialise with the last new location.
 	jday(year, month, day, hour, minute, second, JDAY); // Convert desired epoch to Julian days.
 	double minutesSinceEpoch = (JDAY-TLEepochJDAY)*1440.0; // And minutes since TLE epoch.
