@@ -80,10 +80,10 @@
     <ClCompile Include="..\sgp4io.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\sgp4unit.cpp">
+    <ClCompile Include="..\testdc.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\testdc.cpp">
+    <ClCompile Include="..\sgp4unit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

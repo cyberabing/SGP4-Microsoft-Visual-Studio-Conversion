@@ -2010,26 +2010,26 @@ bool sgp4
 *    vallado       2004, 191, eq 3-45
 * --------------------------------------------------------------------------- */
 
-double  gstime
-        (
-          double jdut1
-        )
-   {
-     const double twopi = 2.0 * pi;
-     const double deg2rad = pi / 180.0;
-     double       temp, tut1;
-
-     tut1 = (jdut1 - 2451545.0) / 36525.0;
-     temp = -6.2e-6* tut1 * tut1 * tut1 + 0.093104 * tut1 * tut1 +
-             (876600.0*3600 + 8640184.812866) * tut1 + 67310.54841;  // sec
-     temp = fmod(temp * deg2rad / 240.0, twopi); //360/86400 = 1/240, to deg, to rad
-
-     // ------------------------ check quadrants ---------------------
-     if (temp < 0.0)
-         temp += twopi;
-
-     return temp;
-   }  // end gstime
+//double  gstime
+//        (
+//          double jdut1
+//        )
+//   {
+//     const double twopi = 2.0 * pi;
+//     const double deg2rad = pi / 180.0;
+//     double       temp, tut1;
+//
+//     tut1 = (jdut1 - 2451545.0) / 36525.0;
+//     temp = -6.2e-6* tut1 * tut1 * tut1 + 0.093104 * tut1 * tut1 +
+//             (876600.0*3600 + 8640184.812866) * tut1 + 67310.54841;  // sec
+//     temp = fmod(temp * deg2rad / 240.0, twopi); //360/86400 = 1/240, to deg, to rad
+//
+//     // ------------------------ check quadrants ---------------------
+//     if (temp < 0.0)
+//         temp += twopi;
+//
+//     return temp;
+//   }  // end gstime
 
 
 /* -----------------------------------------------------------------------------
