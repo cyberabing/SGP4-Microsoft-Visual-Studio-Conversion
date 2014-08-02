@@ -1,0 +1,18 @@
+﻿Build started 02/08/2014 10:50:19.
+     1>Project "C:\Users\Alek\Documents\GitHub\SGP4-Microsoft-Visual-Studio-Conversion\AstMathLIB\AstMathLIB\AstMathLIB.vcxproj" on node 2 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\AstMathLIB.pch" /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\AstMathLIB.pch" /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt AstMathLIB.cpp
+         AstMathLIB.cpp
+     1>AstMathLIB.cpp(682): warning C4101: 'col' : unreferenced local variable
+     1>AstMathLIB.cpp(1380): warning C4101: 'delta' : unreferenced local variable
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"C:\Users\Alek\Documents\GitHub\SGP4-Microsoft-Visual-Studio-Conversion\AstTimeDLL\Release\AstMathLIB.lib" /NOLOGO /LTCG Release\AstMathLIB.obj
+         Release\stdafx.obj
+         AstMathLIB.vcxproj -> C:\Users\Alek\Documents\GitHub\SGP4-Microsoft-Visual-Studio-Conversion\AstTimeDLL\Release\AstMathLIB.lib
+     1>Done Building Project "C:\Users\Alek\Documents\GitHub\SGP4-Microsoft-Visual-Studio-Conversion\AstMathLIB\AstMathLIB\AstMathLIB.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.80

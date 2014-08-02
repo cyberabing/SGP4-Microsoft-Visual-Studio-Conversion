@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AstTimeDLL", "AstTimeDLL\AstTimeDLL.vcxproj", "{361E0D2E-903A-49E4-97FD-6107FAD716BE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AstMathLIB", "..\AstMathLIB\AstMathLIB\AstMathLIB.vcxproj", "{F26AD0D7-6286-4DE7-91C2-6451EBD768AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{361E0D2E-903A-49E4-97FD-6107FAD716BE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{361E0D2E-903A-49E4-97FD-6107FAD716BE}.Debug|Win32.Build.0 = Debug|Win32
+		{361E0D2E-903A-49E4-97FD-6107FAD716BE}.Release|Win32.ActiveCfg = Release|Win32
+		{361E0D2E-903A-49E4-97FD-6107FAD716BE}.Release|Win32.Build.0 = Release|Win32
+		{F26AD0D7-6286-4DE7-91C2-6451EBD768AA}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F26AD0D7-6286-4DE7-91C2-6451EBD768AA}.Debug|Win32.Build.0 = Debug|Win32
+		{F26AD0D7-6286-4DE7-91C2-6451EBD768AA}.Release|Win32.ActiveCfg = Release|Win32
+		{F26AD0D7-6286-4DE7-91C2-6451EBD768AA}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
